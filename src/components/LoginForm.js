@@ -4,21 +4,21 @@ import { Input, Button } from './common';
 
 class LoginForm extends React.Component {
   state = {
-    email: 'booger',
-    password: 'boger',
+    email: '',
+    password: '',
     error: '',
     loading: false
   };
 
-  logUserIn(e) {
-    e.preventDefault();
+  logUserIn() {
+    console.log('hello from log in')
     const { email, password } = this.state;
 
     this.setState({ error: '', loading: true });
 
     // LOGIC FOR SIGN IN
     // http://docs.parseplatform.org/js/guide/#logging-in
-    Pares.User.logIn(email, password, {
+    Parse.User.logIn(email, password, {
       success: function (user) {
         this.onLoginSuccess.bind(this)
         console.log(user);
@@ -32,13 +32,15 @@ class LoginForm extends React.Component {
   }
 
   createUser() {
+    console.log('create firing');
     const { email, password } = this.state;
-
+    console.log(email, password)
     this.setState({ error: '', loading: true });
 
     const user = new Parse.User();
 
-    user.set("username", email);
+    user.set("username", 'mcNut');
+    user.set("email", email);
     user.set("password", password);
 
     // LOGIC FOR CREATING USER
@@ -77,7 +79,7 @@ class LoginForm extends React.Component {
     if (this.state.loading) {
       // return a spinner
     }
-    return (<Button onPress={this.logUserIn.bind(this)}>Log in</Button>)
+    return (<Button onClick={this.logUserIn.bind(this)}>Log in</Button>)
     // return a button
   }
 
@@ -85,14 +87,14 @@ class LoginForm extends React.Component {
     if (this.state.loading) {
       // return a spinner
     }
-    return (<Button onPress={this.createUser.bind(this)}>Sign Up</Button>)
+    return (<Button onClick={this.createUser.bind(this)}>Sign Up</Button>)
     // return a button
   }
 
 
   render () {
     return (
-      <form>
+      <div>
         <Input
           placeholder='rascal@launchpeer.com'
           label='Email'
@@ -108,7 +110,7 @@ class LoginForm extends React.Component {
         />
         {this.renderLogInButton()}
         {this.renderSignUpButton()}
-      </form>
+      </div>
     )
   }
 }

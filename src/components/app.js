@@ -10,7 +10,7 @@ export default class App extends Component {
     // to initialize your own parse-server //
 
     // replace mcauthexample with your app id //
-    Parse.initialize("mcAuthExample");
+    Parse.initialize("mcAuthExample", "launchPeer");
     // replace mc-auth-example.herokuapp.com with your parse server
     Parse.serverURL = 'https://mc-auth-example.herokuapp.com/parse';
 
@@ -25,7 +25,7 @@ export default class App extends Component {
 
   logOut() {
     Parse.User.logOut().then(() => {
-      const currentUser = Pares.User.current(); // this will now be null
+      const currentUser = Parse.User.current(); // this will now be null
     });
   }
 

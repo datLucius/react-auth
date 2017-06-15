@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Button = ({ onPress, children }) => {
+const Button = ({ onClick, children }) => {
   // destructuring props with es6
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-    
+
   const { buttonStyle, textStyle } = styles;
 
   return (
-    <button onPress={onPress} style={buttonStyle}>{children}</button>
+    <button onClick={onClick} style={buttonStyle} type='button'>{children}</button>
   );
 };
 
